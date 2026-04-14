@@ -1,5 +1,6 @@
 import 'package:alchemy_sort/app/routes.dart';
 import 'package:alchemy_sort/core/widgets/arcane_background.dart';
+import 'package:alchemy_sort/core/widgets/pixel_frame_panel.dart';
 import 'package:alchemy_sort/features/levels/data/level_repository.dart';
 import 'package:alchemy_sort/features/game/state/progress_controller.dart';
 import 'package:flutter/material.dart';
@@ -24,15 +25,14 @@ class LevelsPage extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1.0,
+              childAspectRatio: 0.9,
             ),
             itemBuilder: (context, index) {
               final level = levels[index];
               final unlocked = progress.isUnlocked(level.id);
               final completed = progress.isCompleted(level.id);
 
-              return InkWell(
-                borderRadius: BorderRadius.circular(4),
+              return GestureDetector(
                 onTap: unlocked
                     ? () => Navigator.pushNamed(
                         context,
@@ -40,63 +40,67 @@ class LevelsPage extends StatelessWidget {
                         arguments: level,
                       )
                     : null,
-                child: Card(
-                  child: Padding(
-                    padding: const EdgeInsets.all(14),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                child: PixelFramePanel(
+                  frame: PixelFrame.dark,
+                  constraints: const BoxConstraints(minHeight: 170),
+                  padding: const EdgeInsets.all(5),
+                  child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Text(
+                            'Fase ${level.id}',
+                            style: const TextStyle(
+                              fontSize: 14,
+                              fontWeight: FontWeight.w900,
+                              letterSpacing: 0.8,
+                            ),
+                          ),
+                          const SizedBox(width: 8),
+                          Icon(
+                            unlocked
+                                ? Icons.lock_open_rounded
+                                : Icons.lock_rounded,
+                            color: unlocked
+                                ? Colors.greenAccent
+                                : Colors.white54,
+                          ),
+                        ],
+                      ),
+                      const Spacer(),
+                      Text(
+                        'Dificuldade: ${level.difficulty}',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          letterSpacing: 0.5,
+                          fontSize: 10,
+                        ),
+                      ),
+                      Text(
+                        'Meta: ${level.estimatedMoves} jogadas',
+                        maxLines: 1,
+                        overflow: TextOverflow.ellipsis,
+                        style: const TextStyle(
+                          letterSpacing: 0.5,
+                          fontSize: 10,
+                        ),
+                      ),
+                      const SizedBox(height: 6),
+                      if (completed)
+                        const Row(
+                          mainAxisAlignment: MainAxisAlignment.center,
                           children: [
-                            Text(
-                              'Fase ${level.id}',
-                              style: const TextStyle(
-                                fontSize: 18,
-                                fontWeight: FontWeight.w900,
-                                letterSpacing: 0.8,
-                              ),
-                            ),
-                            Icon(
-                              unlocked
-                                  ? Icons.lock_open_rounded
-                                  : Icons.lock_rounded,
-                              color: unlocked
-                                  ? Colors.greenAccent
-                                  : Colors.white54,
-                            ),
+                            Icon(Icons.check_circle, color: Colors.amber),
+                            SizedBox(width: 6),
+                            Text('Concluída'),
                           ],
                         ),
-                        const Spacer(),
-                        Text(
-                          'Dificuldade: ${level.difficulty}',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            letterSpacing: 0.5,
-                            fontSize: 12,
-                          ),
-                        ),
-                        Text(
-                          'Meta: ${level.estimatedMoves} jogadas',
-                          maxLines: 1,
-                          overflow: TextOverflow.ellipsis,
-                          style: const TextStyle(
-                            letterSpacing: 0.5,
-                            fontSize: 12,
-                          ),
-                        ),
-                        const SizedBox(height: 8),
-                        if (completed)
-                          const Row(
-                            children: [
-                              Icon(Icons.check_circle, color: Colors.amber),
-                              SizedBox(width: 6),
-                              Text('Concluída'),
-                            ],
-                          ),
-                      ],
-                    ),
+                    ],
                   ),
                 ),
               );

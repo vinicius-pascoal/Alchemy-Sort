@@ -1,5 +1,6 @@
 import 'package:alchemy_sort/features/game/domain/entities/level.dart';
 import 'package:alchemy_sort/core/widgets/arcane_background.dart';
+import 'package:alchemy_sort/core/widgets/pixel_frame_panel.dart';
 import 'package:alchemy_sort/features/game/presentation/widgets/jar_widget.dart';
 import 'package:alchemy_sort/features/game/state/game_controller.dart';
 import 'package:alchemy_sort/features/game/state/progress_controller.dart';
@@ -111,45 +112,45 @@ class _GamePageState extends State<GamePage> {
             child: Column(
               children: [
                 const SizedBox(height: 8),
-                Container(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 14,
-                    vertical: 8,
+                PixelFramePanel(
+                  frame: PixelFrame.highlighted,
+                  constraints: const BoxConstraints(
+                    minWidth: 280,
+                    minHeight: 76,
                   ),
-                  decoration: BoxDecoration(
-                    color: const Color(0xB31B1530),
-                    border: Border.all(
-                      color: const Color(0x88FFFFFF),
-                      width: 2,
-                    ),
-                  ),
-                  child: Text(
-                    'Movimentos: ${_controller.moveCount}',
-                    style: const TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w900,
-                      letterSpacing: 0.8,
+                  padding: const EdgeInsets.all(5),
+                  child: Center(
+                    child: Text(
+                      'Movimentos: ${_controller.moveCount}',
+                      style: const TextStyle(
+                        fontSize: 13,
+                        fontWeight: FontWeight.w900,
+                        letterSpacing: 0.8,
+                      ),
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
                 Expanded(
-                  child: Center(
-                    child: SingleChildScrollView(
-                      padding: const EdgeInsets.all(16),
-                      child: Wrap(
-                        alignment: WrapAlignment.center,
-                        spacing: 12,
-                        runSpacing: 14,
-                        children: List.generate(_controller.jars.length, (
-                          index,
-                        ) {
-                          return JarWidget(
-                            jar: _controller.jars[index],
-                            isSelected: _controller.selectedJarIndex == index,
-                            onTap: () => _controller.selectJar(index),
-                          );
-                        }),
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 8),
+                    child: Center(
+                      child: SingleChildScrollView(
+                        padding: const EdgeInsets.all(16),
+                        child: Wrap(
+                          alignment: WrapAlignment.center,
+                          spacing: 14,
+                          runSpacing: 16,
+                          children: List.generate(_controller.jars.length, (
+                            index,
+                          ) {
+                            return JarWidget(
+                              jar: _controller.jars[index],
+                              isSelected: _controller.selectedJarIndex == index,
+                              onTap: () => _controller.selectJar(index),
+                            );
+                          }),
+                        ),
                       ),
                     ),
                   ),

@@ -1,4 +1,5 @@
 import 'package:alchemy_sort/features/game/state/progress_controller.dart';
+import 'package:alchemy_sort/core/widgets/pixel_frame_panel.dart';
 import 'package:alchemy_sort/features/settings/state/settings_controller.dart';
 import 'package:alchemy_sort/core/widgets/arcane_background.dart';
 import 'package:flutter/material.dart';
@@ -16,61 +17,104 @@ class SettingsPage extends StatelessWidget {
       body: ArcaneBackground(
         child: Center(
           child: ConstrainedBox(
-            constraints: const BoxConstraints(maxWidth: 520),
-            child: Container(
+            constraints: const BoxConstraints(maxWidth: 580),
+            child: PixelFramePanel(
+              frame: PixelFrame.dark,
               margin: const EdgeInsets.all(16),
-              padding: const EdgeInsets.all(12),
-              decoration: BoxDecoration(
-                color: const Color(0xB31B1530),
-                border: Border.all(color: const Color(0x88FFFFFF), width: 2),
-              ),
+              constraints: const BoxConstraints(minWidth: 360, minHeight: 460),
+              padding: const EdgeInsets.all(5),
               child: ListView(
                 shrinkWrap: true,
+                physics: const NeverScrollableScrollPhysics(),
                 children: [
-                  SwitchListTile.adaptive(
-                    value: settings.soundEnabled,
-                    onChanged: settings.toggleSound,
-                    title: const Text('Som'),
+                  Center(
+                    child: SizedBox(
+                      width: 300,
+                      child: SwitchListTile.adaptive(
+                        contentPadding: EdgeInsets.zero,
+                        value: settings.soundEnabled,
+                        onChanged: settings.toggleSound,
+                        title: const Text(
+                          'Som',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                      ),
+                    ),
                   ),
-                  SwitchListTile.adaptive(
-                    value: settings.musicEnabled,
-                    onChanged: settings.toggleMusic,
-                    title: const Text('Música'),
+                  Center(
+                    child: SizedBox(
+                      width: 300,
+                      child: SwitchListTile.adaptive(
+                        contentPadding: EdgeInsets.zero,
+                        value: settings.musicEnabled,
+                        onChanged: settings.toggleMusic,
+                        title: const Text(
+                          'Música',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                      ),
+                    ),
                   ),
-                  SwitchListTile.adaptive(
-                    value: settings.vibrationEnabled,
-                    onChanged: settings.toggleVibration,
-                    title: const Text('Vibração'),
+                  Center(
+                    child: SizedBox(
+                      width: 300,
+                      child: SwitchListTile.adaptive(
+                        contentPadding: EdgeInsets.zero,
+                        value: settings.vibrationEnabled,
+                        onChanged: settings.toggleVibration,
+                        title: const Text(
+                          'Vibração',
+                          style: TextStyle(fontSize: 13),
+                        ),
+                      ),
+                    ),
                   ),
                   const SizedBox(height: 24),
-                  ElevatedButton.icon(
-                    onPressed: () async {
-                      await context.read<ProgressController>().reset();
-                      if (!context.mounted) {
-                        return;
-                      }
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(content: Text('Progresso resetado.')),
-                      );
-                    },
-                    icon: const Icon(Icons.refresh),
-                    label: const Text('Resetar progresso'),
-                  ),
-                  const SizedBox(height: 12),
-                  OutlinedButton.icon(
-                    onPressed: () async {
-                      await context.read<SettingsController>().reset();
-                      if (!context.mounted) {
-                        return;
-                      }
-                      ScaffoldMessenger.of(context).showSnackBar(
-                        const SnackBar(
-                          content: Text('Configurações restauradas.'),
+                  PixelFramePanel(
+                    frame: PixelFrame.warning,
+                    padding: const EdgeInsets.all(5),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        ElevatedButton.icon(
+                          onPressed: () async {
+                            await context.read<ProgressController>().reset();
+                            if (!context.mounted) {
+                              return;
+                            }
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Progresso resetado.'),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.refresh, size: 18),
+                          label: const Text(
+                            'Resetar progresso',
+                            style: TextStyle(fontSize: 12),
+                          ),
                         ),
-                      );
-                    },
-                    icon: const Icon(Icons.restart_alt),
-                    label: const Text('Restaurar configurações'),
+                        const SizedBox(height: 12),
+                        OutlinedButton.icon(
+                          onPressed: () async {
+                            await context.read<SettingsController>().reset();
+                            if (!context.mounted) {
+                              return;
+                            }
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('Configurações restauradas.'),
+                              ),
+                            );
+                          },
+                          icon: const Icon(Icons.restart_alt, size: 18),
+                          label: const Text(
+                            'Restaurar configurações',
+                            style: TextStyle(fontSize: 12),
+                          ),
+                        ),
+                      ],
+                    ),
                   ),
                 ],
               ),

@@ -1,5 +1,6 @@
 import 'package:alchemy_sort/app/routes.dart';
 import 'package:alchemy_sort/core/widgets/arcane_background.dart';
+import 'package:alchemy_sort/core/widgets/pixel_frame_panel.dart';
 import 'package:alchemy_sort/features/game/state/progress_controller.dart';
 import 'package:alchemy_sort/features/levels/data/level_repository.dart';
 import 'package:flutter/material.dart';
@@ -16,31 +17,23 @@ class HomePage extends StatelessWidget {
           child: Center(
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 24),
-              child: Container(
-                padding: const EdgeInsets.symmetric(
-                  horizontal: 20,
-                  vertical: 24,
+              child: PixelFramePanel(
+                frame: PixelFrame.highlighted,
+                constraints: const BoxConstraints(
+                  minWidth: 280,
+                  minHeight: 360,
                 ),
-                decoration: BoxDecoration(
-                  color: const Color(0xB21A1330),
-                  border: Border.all(color: const Color(0x99FFFFFF), width: 2),
-                  boxShadow: const [
-                    BoxShadow(
-                      color: Color(0xAA05030E),
-                      blurRadius: 0,
-                      spreadRadius: 3,
-                      offset: Offset(4, 4),
-                    ),
-                  ],
-                ),
+                padding: const EdgeInsets.all(5),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     const Text(
                       'Alchemy Sort',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 42,
+                        fontSize: 34,
                         fontWeight: FontWeight.w900,
                         color: Colors.white,
                         letterSpacing: 1.4,
@@ -57,13 +50,13 @@ class HomePage extends StatelessWidget {
                       'Ordene os elixires e domine o laboratório arcano',
                       textAlign: TextAlign.center,
                       style: TextStyle(
-                        fontSize: 14,
+                        fontSize: 12,
                         fontWeight: FontWeight.w700,
                         letterSpacing: 0.6,
                         color: Colors.white.withAlpha(225),
                       ),
                     ),
-                    const SizedBox(height: 38),
+                    const SizedBox(height: 28),
                     ElevatedButton(
                       onPressed: () {
                         final levels = LevelRepository.levels;
@@ -88,13 +81,13 @@ class HomePage extends StatelessWidget {
                       },
                       child: const Text('Jogar'),
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 12),
                     OutlinedButton(
                       onPressed: () =>
                           Navigator.pushNamed(context, AppRoutes.levels),
                       child: const Text('Fases'),
                     ),
-                    const SizedBox(height: 14),
+                    const SizedBox(height: 12),
                     TextButton.icon(
                       onPressed: () =>
                           Navigator.pushNamed(context, AppRoutes.settings),
