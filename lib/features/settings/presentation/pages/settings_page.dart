@@ -22,7 +22,7 @@ class SettingsPage extends StatelessWidget {
               frame: PixelFrame.dark,
               margin: const EdgeInsets.all(16),
               constraints: const BoxConstraints(minWidth: 360, minHeight: 460),
-              padding: const EdgeInsets.all(5),
+              padding: const EdgeInsets.all(15),
               child: ListView(
                 shrinkWrap: true,
                 physics: const NeverScrollableScrollPhysics(),
@@ -72,7 +72,7 @@ class SettingsPage extends StatelessWidget {
                   const SizedBox(height: 24),
                   PixelFramePanel(
                     frame: PixelFrame.warning,
-                    padding: const EdgeInsets.all(5),
+                    padding: const EdgeInsets.all(15),
                     child: Column(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [

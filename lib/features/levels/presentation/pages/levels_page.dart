@@ -43,7 +43,7 @@ class LevelsPage extends StatelessWidget {
                 child: PixelFramePanel(
                   frame: PixelFrame.dark,
                   constraints: const BoxConstraints(minHeight: 170),
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(15),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     crossAxisAlignment: CrossAxisAlignment.center,

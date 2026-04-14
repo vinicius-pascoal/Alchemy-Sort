@@ -19,11 +19,8 @@ class HomePage extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 24),
               child: PixelFramePanel(
                 frame: PixelFrame.highlighted,
-                constraints: const BoxConstraints(
-                  minWidth: 280,
-                  minHeight: 360,
-                ),
-                padding: const EdgeInsets.all(5),
+                constraints: const BoxConstraints(minWidth: 280),
+                padding: const EdgeInsets.all(15),
                 child: Column(
                   mainAxisSize: MainAxisSize.min,
                   crossAxisAlignment: CrossAxisAlignment.center,

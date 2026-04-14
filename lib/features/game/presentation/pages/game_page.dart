@@ -118,7 +118,7 @@ class _GamePageState extends State<GamePage> {
                     minWidth: 280,
                     minHeight: 76,
                   ),
-                  padding: const EdgeInsets.all(5),
+                  padding: const EdgeInsets.all(15),
                   child: Center(
                     child: Text(
                       'Movimentos: ${_controller.moveCount}',
