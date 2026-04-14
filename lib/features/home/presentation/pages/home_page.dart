@@ -1,6 +1,9 @@
 import 'package:alchemy_sort/app/routes.dart';
 import 'package:alchemy_sort/core/widgets/arcane_background.dart';
+import 'package:alchemy_sort/features/game/state/progress_controller.dart';
+import 'package:alchemy_sort/features/levels/data/level_repository.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({super.key});
@@ -62,8 +65,27 @@ class HomePage extends StatelessWidget {
                     ),
                     const SizedBox(height: 38),
                     ElevatedButton(
-                      onPressed: () =>
-                          Navigator.pushNamed(context, AppRoutes.levels),
+                      onPressed: () {
+                        final levels = LevelRepository.levels;
+                        if (levels.isEmpty) {
+                          Navigator.pushNamed(context, AppRoutes.levels);
+                          return;
+                        }
+
+                        final unlockedLevel = context
+                            .read<ProgressController>()
+                            .unlockedLevel;
+                        final latestUnlockedIndex = (unlockedLevel - 1)
+                            .clamp(0, levels.length - 1)
+                            .toInt();
+                        final latestUnlockedLevel = levels[latestUnlockedIndex];
+
+                        Navigator.pushNamed(
+                          context,
+                          AppRoutes.game,
+                          arguments: latestUnlockedLevel,
+                        );
+                      },
                       child: const Text('Jogar'),
                     ),
                     const SizedBox(height: 14),

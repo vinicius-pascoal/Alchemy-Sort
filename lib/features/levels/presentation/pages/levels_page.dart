@@ -24,7 +24,7 @@ class LevelsPage extends StatelessWidget {
               crossAxisCount: 2,
               crossAxisSpacing: 12,
               mainAxisSpacing: 12,
-              childAspectRatio: 1.15,
+              childAspectRatio: 1.0,
             ),
             itemBuilder: (context, index) {
               final level = levels[index];
@@ -70,11 +70,21 @@ class LevelsPage extends StatelessWidget {
                         const Spacer(),
                         Text(
                           'Dificuldade: ${level.difficulty}',
-                          style: const TextStyle(letterSpacing: 0.5),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            letterSpacing: 0.5,
+                            fontSize: 12,
+                          ),
                         ),
                         Text(
                           'Meta: ${level.estimatedMoves} jogadas',
-                          style: const TextStyle(letterSpacing: 0.5),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: const TextStyle(
+                            letterSpacing: 0.5,
+                            fontSize: 12,
+                          ),
                         ),
                         const SizedBox(height: 8),
                         if (completed)
