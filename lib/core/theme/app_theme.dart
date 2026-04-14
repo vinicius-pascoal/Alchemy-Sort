@@ -37,10 +37,11 @@ class AppTheme {
         style: ElevatedButton.styleFrom(
           backgroundColor: primary,
           foregroundColor: const Color(0xFF0D0820),
-          minimumSize: const Size(190, 52),
+          minimumSize: const Size(180, 46),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           elevation: 0,
           textStyle: const TextStyle(
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.8,
           ),
@@ -52,11 +53,12 @@ class AppTheme {
       ),
       outlinedButtonTheme: OutlinedButtonThemeData(
         style: OutlinedButton.styleFrom(
-          minimumSize: const Size(190, 52),
+          minimumSize: const Size(180, 46),
+          padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 12),
           foregroundColor: secondary,
           side: const BorderSide(color: secondary, width: 2),
           textStyle: const TextStyle(
-            fontSize: 17,
+            fontSize: 15,
             fontWeight: FontWeight.w900,
             letterSpacing: 0.8,
           ),
@@ -66,7 +68,9 @@ class AppTheme {
       textButtonTheme: TextButtonThemeData(
         style: TextButton.styleFrom(
           foregroundColor: Colors.white,
+          padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
           textStyle: const TextStyle(
+            fontSize: 14,
             fontWeight: FontWeight.w800,
             letterSpacing: 0.7,
           ),

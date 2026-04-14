@@ -5,7 +5,7 @@ class PixelFramePanel extends StatelessWidget {
     super.key,
     required this.child,
     this.frame = PixelFrame.dark,
-    this.padding = const EdgeInsets.all(15),
+    this.padding = const EdgeInsets.all(20),
     this.backgroundColor = const Color(0xAA0F0A1A),
     this.margin,
     this.constraints,
