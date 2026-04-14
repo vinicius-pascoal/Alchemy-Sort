@@ -27,12 +27,12 @@ class JarWidget extends StatelessWidget {
         width: width,
         height: height,
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
+          borderRadius: BorderRadius.circular(4),
           border: Border.all(
             color: isSelected
                 ? const Color(0xFFF5BE65)
                 : const Color(0xAAFFFFFF),
-            width: isSelected ? 2.4 : 1.4,
+            width: isSelected ? 3 : 2,
           ),
           gradient: LinearGradient(
             colors: [Colors.white.withAlpha(26), Colors.white.withAlpha(10)],
@@ -43,8 +43,9 @@ class JarWidget extends StatelessWidget {
             if (isSelected)
               BoxShadow(
                 color: const Color(0xFFF5BE65).withAlpha(60),
-                blurRadius: 18,
-                spreadRadius: 2,
+                blurRadius: 0,
+                spreadRadius: 1,
+                offset: const Offset(2, 2),
               ),
           ],
         ),
@@ -63,11 +64,16 @@ class JarWidget extends StatelessWidget {
                       height: layerHeight - 2,
                       decoration: BoxDecoration(
                         color: jar.layers[i].color,
-                        borderRadius: BorderRadius.circular(8),
+                        borderRadius: BorderRadius.circular(1),
+                        border: Border.all(
+                          color: Colors.black.withAlpha(85),
+                          width: 1,
+                        ),
                         boxShadow: [
                           BoxShadow(
                             color: jar.layers[i].color.withAlpha(120),
-                            blurRadius: 8,
+                            blurRadius: 0,
+                            offset: const Offset(1, 1),
                           ),
                         ],
                       ),

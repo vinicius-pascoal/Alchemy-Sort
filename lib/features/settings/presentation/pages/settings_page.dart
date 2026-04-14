@@ -14,53 +14,68 @@ class SettingsPage extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: const Text('Configurações')),
       body: ArcaneBackground(
-        child: ListView(
-          padding: const EdgeInsets.all(16),
-          children: [
-            SwitchListTile.adaptive(
-              value: settings.soundEnabled,
-              onChanged: settings.toggleSound,
-              title: const Text('Som'),
+        child: Center(
+          child: ConstrainedBox(
+            constraints: const BoxConstraints(maxWidth: 520),
+            child: Container(
+              margin: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(12),
+              decoration: BoxDecoration(
+                color: const Color(0xB31B1530),
+                border: Border.all(color: const Color(0x88FFFFFF), width: 2),
+              ),
+              child: ListView(
+                shrinkWrap: true,
+                children: [
+                  SwitchListTile.adaptive(
+                    value: settings.soundEnabled,
+                    onChanged: settings.toggleSound,
+                    title: const Text('Som'),
+                  ),
+                  SwitchListTile.adaptive(
+                    value: settings.musicEnabled,
+                    onChanged: settings.toggleMusic,
+                    title: const Text('Música'),
+                  ),
+                  SwitchListTile.adaptive(
+                    value: settings.vibrationEnabled,
+                    onChanged: settings.toggleVibration,
+                    title: const Text('Vibração'),
+                  ),
+                  const SizedBox(height: 24),
+                  ElevatedButton.icon(
+                    onPressed: () async {
+                      await context.read<ProgressController>().reset();
+                      if (!context.mounted) {
+                        return;
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(content: Text('Progresso resetado.')),
+                      );
+                    },
+                    icon: const Icon(Icons.refresh),
+                    label: const Text('Resetar progresso'),
+                  ),
+                  const SizedBox(height: 12),
+                  OutlinedButton.icon(
+                    onPressed: () async {
+                      await context.read<SettingsController>().reset();
+                      if (!context.mounted) {
+                        return;
+                      }
+                      ScaffoldMessenger.of(context).showSnackBar(
+                        const SnackBar(
+                          content: Text('Configurações restauradas.'),
+                        ),
+                      );
+                    },
+                    icon: const Icon(Icons.restart_alt),
+                    label: const Text('Restaurar configurações'),
+                  ),
+                ],
+              ),
             ),
-            SwitchListTile.adaptive(
-              value: settings.musicEnabled,
-              onChanged: settings.toggleMusic,
-              title: const Text('Música'),
-            ),
-            SwitchListTile.adaptive(
-              value: settings.vibrationEnabled,
-              onChanged: settings.toggleVibration,
-              title: const Text('Vibração'),
-            ),
-            const SizedBox(height: 24),
-            ElevatedButton.icon(
-              onPressed: () async {
-                await context.read<ProgressController>().reset();
-                if (!context.mounted) {
-                  return;
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Progresso resetado.')),
-                );
-              },
-              icon: const Icon(Icons.refresh),
-              label: const Text('Resetar progresso'),
-            ),
-            const SizedBox(height: 12),
-            OutlinedButton.icon(
-              onPressed: () async {
-                await context.read<SettingsController>().reset();
-                if (!context.mounted) {
-                  return;
-                }
-                ScaffoldMessenger.of(context).showSnackBar(
-                  const SnackBar(content: Text('Configurações restauradas.')),
-                );
-              },
-              icon: const Icon(Icons.restart_alt),
-              label: const Text('Restaurar configurações'),
-            ),
-          ],
+          ),
         ),
       ),
     );

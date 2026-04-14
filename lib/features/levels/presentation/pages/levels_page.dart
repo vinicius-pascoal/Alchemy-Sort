@@ -32,7 +32,7 @@ class LevelsPage extends StatelessWidget {
               final completed = progress.isCompleted(level.id);
 
               return InkWell(
-                borderRadius: BorderRadius.circular(16),
+                borderRadius: BorderRadius.circular(4),
                 onTap: unlocked
                     ? () => Navigator.pushNamed(
                         context,
@@ -53,7 +53,8 @@ class LevelsPage extends StatelessWidget {
                               'Fase ${level.id}',
                               style: const TextStyle(
                                 fontSize: 18,
-                                fontWeight: FontWeight.w700,
+                                fontWeight: FontWeight.w900,
+                                letterSpacing: 0.8,
                               ),
                             ),
                             Icon(
@@ -67,8 +68,14 @@ class LevelsPage extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                        Text('Dificuldade: ${level.difficulty}'),
-                        Text('Meta: ${level.estimatedMoves} jogadas'),
+                        Text(
+                          'Dificuldade: ${level.difficulty}',
+                          style: const TextStyle(letterSpacing: 0.5),
+                        ),
+                        Text(
+                          'Meta: ${level.estimatedMoves} jogadas',
+                          style: const TextStyle(letterSpacing: 0.5),
+                        ),
                         const SizedBox(height: 8),
                         if (completed)
                           const Row(

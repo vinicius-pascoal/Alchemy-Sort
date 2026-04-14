@@ -111,11 +111,25 @@ class _GamePageState extends State<GamePage> {
             child: Column(
               children: [
                 const SizedBox(height: 8),
-                Text(
-                  'Movimentos: ${_controller.moveCount}',
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w700,
+                Container(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 14,
+                    vertical: 8,
+                  ),
+                  decoration: BoxDecoration(
+                    color: const Color(0xB31B1530),
+                    border: Border.all(
+                      color: const Color(0x88FFFFFF),
+                      width: 2,
+                    ),
+                  ),
+                  child: Text(
+                    'Movimentos: ${_controller.moveCount}',
+                    style: const TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w900,
+                      letterSpacing: 0.8,
+                    ),
                   ),
                 ),
                 const SizedBox(height: 16),

@@ -15,13 +15,27 @@ class ArcaneBackground extends StatelessWidget {
     return Stack(
       fit: StackFit.expand,
       children: [
-        Image.asset('assets/imgs/fundo.png', fit: BoxFit.cover),
+        Image.asset(
+          'assets/imgs/fundo.png',
+          fit: BoxFit.cover,
+          filterQuality: FilterQuality.none,
+        ),
         const DecoratedBox(
           decoration: BoxDecoration(
             gradient: LinearGradient(
-              colors: [Color(0xAA080510), Color(0xAA120C24), Color(0xAA160E2F)],
+              colors: [Color(0xBF07040F), Color(0xC20F0A1D), Color(0xC71A1031)],
               begin: Alignment.topCenter,
               end: Alignment.bottomCenter,
+            ),
+          ),
+        ),
+        const DecoratedBox(
+          decoration: BoxDecoration(
+            border: Border(
+              top: BorderSide(color: Color(0x33FFFFFF), width: 2),
+              left: BorderSide(color: Color(0x33FFFFFF), width: 2),
+              right: BorderSide(color: Color(0x33000000), width: 2),
+              bottom: BorderSide(color: Color(0x33000000), width: 2),
             ),
           ),
         ),
