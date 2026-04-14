@@ -1,4 +1,5 @@
 import 'package:alchemy_sort/features/game/domain/entities/level.dart';
+import 'package:alchemy_sort/core/widgets/arcane_background.dart';
 import 'package:alchemy_sort/features/game/presentation/widgets/jar_widget.dart';
 import 'package:alchemy_sort/features/game/state/game_controller.dart';
 import 'package:alchemy_sort/features/game/state/progress_controller.dart';
@@ -106,18 +107,7 @@ class _GamePageState extends State<GamePage> {
       body: AnimatedBuilder(
         animation: _controller,
         builder: (context, _) {
-          return Container(
-            decoration: const BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  Color(0xFF100B1F),
-                  Color(0xFF171029),
-                  Color(0xFF24153D),
-                ],
-                begin: Alignment.topCenter,
-                end: Alignment.bottomCenter,
-              ),
-            ),
+          return ArcaneBackground(
             child: Column(
               children: [
                 const SizedBox(height: 8),
